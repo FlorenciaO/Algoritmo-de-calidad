@@ -38,11 +38,11 @@ public class Funcionabilidad extends JFrame{
 	
 	private JButton btnSiguiente;
 	
-	public Funcionabilidad(JFrame ventanaPrincipal) {
+	public Funcionabilidad(JFrame padre) {
 		setTitle("Característica: Funcionabilidad");
 		setSize(502, 531);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(ventanaPrincipal);
+		setLocationRelativeTo(padre);
 		getContentPane().setLayout(null);
 		
 		JLabel lblInteroperabilidad = new JLabel("Interoperabilidad");
@@ -227,42 +227,40 @@ public class Funcionabilidad extends JFrame{
 		int puntaje = cantSistemas == 0 ? 0 : cantSistemas == 1 ? 1 : 2;
 		
 		lblEvInteroperabilidad.setText("Puntaje: " + puntaje);
-		
+
 		return puntaje;
 	}
 
 	private int evaluarYmostrarSegAcceso() {
-		int puntaje;
-		
-		if(!checkBox6.isSelected()) {
-			puntaje = 0;
-		} else if(!checkBox7.isSelected()) {
-			puntaje = 1;
-		} else {
+		int puntaje = 0;
+
+		if (checkBox1.isSelected() && checkBox2.isSelected() && checkBox3.isSelected() && checkBox4.isSelected()
+				&& checkBox5.isSelected()) {
 			puntaje = 2;
+		} else if (checkBox1.isSelected() && checkBox2.isSelected()) {
+			puntaje = 1;
 		}
-		
+
 		lblEvSegAcceso.setText("Puntaje: " + puntaje);
-		
 		return puntaje;
 	}
 
 	private int evaluarYmostrarExactResultados() {
-		int puntaje = 0;
-		
-		if(checkBox1.isSelected() && checkBox2.isSelected() && checkBox3.isSelected() && checkBox4.isSelected() && checkBox5.isSelected()) {
-			puntaje = 2;
-		} else if(checkBox1.isSelected() && checkBox2.isSelected()) {
+		int puntaje;
+
+		if (!checkBox6.isSelected()) {
+			puntaje = 0;
+		} else if (!checkBox7.isSelected()) {
 			puntaje = 1;
 		} else {
-			puntaje = 0;
+			puntaje = 2;
 		}
-		
-		lblEvExacResultados.setText("Puntaje: " + puntaje);;
-		
+
+		lblEvExacResultados.setText("Puntaje: " + puntaje);
+
 		return puntaje;
 	}
-	
+
 	private void clearFrame() {
 		txtInteroperabilidad.setText(EMPTY_STRING);
 		checkBox1.setSelected(false);
