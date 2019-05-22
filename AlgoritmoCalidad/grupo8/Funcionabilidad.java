@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.Color;
 
 public class Funcionabilidad extends JFrame{
 
@@ -20,13 +21,26 @@ public class Funcionabilidad extends JFrame{
 	 */
 	private static final long serialVersionUID = -5745267259821566766L;
 	private JTextField txtInteroperabilidad;
-	private JTextField txtExactitud;
 	private static final String EMPTY_STRING = "";
-	private Resultado resultado;
 	
-	public Funcionabilidad(VentanaPrincipal ventanaPrincipal) {
+	private JCheckBox checkBox2;
+	private JCheckBox checkBox1;
+	private JCheckBox checkBox4;
+	private JCheckBox checkBox3;
+	private JCheckBox checkBox5;
+	private JCheckBox checkBox6;
+	private JCheckBox checkBox7;
+	
+	private JLabel lblEvInteroperabilidad;
+	private JLabel lblEvSegAcceso;
+	private JLabel lblEvExacResultados;
+	private JLabel lblEvFuncionalidad;
+	
+	private JButton btnSiguiente;
+	
+	public Funcionabilidad(JFrame ventanaPrincipal) {
 		setTitle("Característica: Funcionabilidad");
-		setSize(500, 500);
+		setSize(502, 531);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(ventanaPrincipal);
 		getContentPane().setLayout(null);
@@ -54,36 +68,6 @@ public class Funcionabilidad extends JFrame{
 		lbl2.setBounds(48, 158, 378, 16);
 		getContentPane().add(lbl2);
 		
-		JLabel lbl8 = new JLabel("- ¿Con cuántos sistemas se relaciona su producto software?");
-		lbl8.setBounds(48, 366, 428, 16);
-		getContentPane().add(lbl8);
-		
-		txtInteroperabilidad = new JTextField();
-		txtInteroperabilidad.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				validarIngreso(e, txtInteroperabilidad);
-			}
-		});
-		txtInteroperabilidad.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
-		txtInteroperabilidad.setToolTipText("Ingrese cantidad total de sistemas con los que se relaciona su sistema");
-		txtInteroperabilidad.setBounds(58, 86, 130, 26);
-		getContentPane().add(txtInteroperabilidad);
-		txtInteroperabilidad.setColumns(10);
-		
-		txtExactitud = new JTextField();
-		txtExactitud.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				validarIngreso(e, txtExactitud);
-			}
-		});
-		txtExactitud.setToolTipText("Ingrese cantidad total de sistemas con los que se relaciona su sistema");
-		txtExactitud.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
-		txtExactitud.setColumns(10);
-		txtExactitud.setBounds(48, 394, 130, 26);
-		getContentPane().add(txtExactitud);
-		
 		JLabel lbl3 = new JLabel("- Mi software tiene ocultamiento de contraseña al ingresar");
 		lbl3.setBounds(48, 186, 378, 16);
 		getContentPane().add(lbl3);
@@ -100,29 +84,58 @@ public class Funcionabilidad extends JFrame{
 		lbl6.setBounds(48, 271, 378, 16);
 		getContentPane().add(lbl6);
 		
-		JCheckBox checkBox1 = new JCheckBox("");
-		checkBox1.setBounds(435, 154, 28, 23);
-		getContentPane().add(checkBox1);
-		
-		JCheckBox checkBox2 = new JCheckBox("");
-		checkBox2.setBounds(435, 182, 28, 23);
-		getContentPane().add(checkBox2);
-		
-		JCheckBox checkBox3 = new JCheckBox("");
-		checkBox3.setBounds(435, 208, 28, 23);
-		getContentPane().add(checkBox3);
-		
-		JCheckBox checkBox4 = new JCheckBox("");
-		checkBox4.setBounds(435, 236, 28, 23);
-		getContentPane().add(checkBox4);
-		
-		JCheckBox checkBox5 = new JCheckBox("");
-		checkBox5.setBounds(435, 280, 28, 23);
-		getContentPane().add(checkBox5);
-		
 		JLabel lbl7 = new JLabel("después de 15 minutos");
 		lbl7.setBounds(58, 287, 378, 16);
 		getContentPane().add(lbl7);
+		
+		JLabel lbl8 = new JLabel("- Mi sistema proporciona resultados");
+		lbl8.setBounds(48, 366, 378, 16);
+		getContentPane().add(lbl8);
+		
+		JLabel lbl9 = new JLabel("- Mi sistema proporciona mensajes claros ante fallos");
+		lbl9.setBounds(48, 392, 378, 16);
+		getContentPane().add(lbl9);
+		
+		txtInteroperabilidad = new JTextField();
+		txtInteroperabilidad.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				validarIngreso(e, txtInteroperabilidad);
+			}
+		});
+		txtInteroperabilidad.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		txtInteroperabilidad.setToolTipText("Ingrese cantidad total de sistemas con los que se relaciona su sistema");
+		txtInteroperabilidad.setBounds(58, 86, 130, 26);
+		getContentPane().add(txtInteroperabilidad);
+		txtInteroperabilidad.setColumns(10);
+		
+		checkBox1 = new JCheckBox("");
+		checkBox1.setBounds(435, 154, 28, 23);
+		getContentPane().add(checkBox1);
+		
+		checkBox2 = new JCheckBox("");
+		checkBox2.setBounds(435, 182, 28, 23);
+		getContentPane().add(checkBox2);
+		
+		checkBox3 = new JCheckBox("");
+		checkBox3.setBounds(435, 208, 28, 23);
+		getContentPane().add(checkBox3);
+		
+		checkBox4 = new JCheckBox("");
+		checkBox4.setBounds(435, 236, 28, 23);
+		getContentPane().add(checkBox4);
+		
+		checkBox5 = new JCheckBox("");
+		checkBox5.setBounds(435, 280, 28, 23);
+		getContentPane().add(checkBox5);
+		
+		checkBox6 = new JCheckBox("");
+		checkBox6.setBounds(435, 362, 28, 23);
+		getContentPane().add(checkBox6);
+		
+		checkBox7 = new JCheckBox("");
+		checkBox7.setBounds(435, 388, 28, 23);
+		getContentPane().add(checkBox7);
 		
 		JButton btnEvaluar = new JButton("Evaluar");
 		btnEvaluar.addActionListener(new ActionListener() {
@@ -130,22 +143,24 @@ public class Funcionabilidad extends JFrame{
 				evaluar();
 			}
 		});
-		btnEvaluar.setBounds(20, 432, 117, 29);
+		btnEvaluar.setBounds(6, 470, 117, 29);
 		getContentPane().add(btnEvaluar);
 		
-		JLabel lblEvInteroperabilidad = new JLabel("");
-		lblEvInteroperabilidad.setBounds(217, 91, 61, 16);
+		lblEvInteroperabilidad = new JLabel("");
+		lblEvInteroperabilidad.setForeground(Color.RED);
+		lblEvInteroperabilidad.setBounds(200, 91, 263, 16);
 		getContentPane().add(lblEvInteroperabilidad);
 		
-		JLabel lblEvSegAcceso = new JLabel("");
-		lblEvSegAcceso.setBounds(48, 315, 61, 16);
+		lblEvSegAcceso = new JLabel("");
+		lblEvSegAcceso.setForeground(Color.RED);
+		lblEvSegAcceso.setBounds(48, 315, 258, 16);
 		getContentPane().add(lblEvSegAcceso);
 		
-		JLabel lblEvExacResultados = new JLabel("");
-		lblEvExacResultados.setBounds(217, 400, 61, 16);
+		lblEvExacResultados = new JLabel("");
+		lblEvExacResultados.setBounds(48, 430, 236, 16);
 		getContentPane().add(lblEvExacResultados);
 		
-		JButton btnSiguiente = new JButton("Siguiente");
+		btnSiguiente = new JButton("Siguiente");
 		btnSiguiente.setToolTipText("Debe evaluar la característica antes de seguir");
 		btnSiguiente.setEnabled(false);
 		btnSiguiente.addActionListener(new ActionListener() {
@@ -153,12 +168,14 @@ public class Funcionabilidad extends JFrame{
 				siguiente();
 			}
 		});
-		btnSiguiente.setBounds(359, 432, 117, 29);
+		btnSiguiente.setBounds(377, 470, 117, 29);
 		getContentPane().add(btnSiguiente);
 		
-		JLabel lblEvFuncionalidad = new JLabel("");
-		lblEvFuncionalidad.setBounds(149, 437, 61, 16);
+		lblEvFuncionalidad = new JLabel("");
+		lblEvFuncionalidad.setForeground(Color.RED);
+		lblEvFuncionalidad.setBounds(125, 475, 251, 16);
 		getContentPane().add(lblEvFuncionalidad);
+		
 	}
 	
 	private void validarIngreso(KeyEvent e, JTextField txt) {
@@ -171,11 +188,93 @@ public class Funcionabilidad extends JFrame{
 	}
 	
 	private void siguiente() {
+		clearFrame();
+		dispose();
+		new Eficiencia(this).setVisible(true);
+	}
+
+	private void evaluar() {
+		if (txtInteroperabilidad.getText().equals(EMPTY_STRING)) {
+			JOptionPane.showMessageDialog(this, "Debe responder todas las preguntas.", "Campos incompletos", JOptionPane.ERROR_MESSAGE);
+		} else {
+			if (JOptionPane.showConfirmDialog(this, "¿Está seguro de las respuestas?", "Confirmación",
+					JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+
+				int rInteroperabilidad = evaluarYmostrarInteroperabilidad();
+				int rSegAcceso = evaluarYmostrarSegAcceso();
+				int rExacResultados = evaluarYmostrarExactResultados();
+
+				float promedio = (float) (rInteroperabilidad + rSegAcceso + rExacResultados) / (float) 3;
+
+				if (promedio == 0) {
+					Evaluacion.getInstance().rFuncionabilidad = Resultado.Mala;
+				} else if (promedio > 0 && promedio <= 1) {
+					Evaluacion.getInstance().rFuncionabilidad = Resultado.Buena;
+				} else {
+					Evaluacion.getInstance().rFuncionabilidad = Resultado.Excelente;
+				}
+
+				lblEvFuncionalidad
+						.setText("Resultado de evaluación: " + Evaluacion.getInstance().rFuncionabilidad.toString());
+				
+				btnSiguiente.setEnabled(true);
+			}
+		}
+	}
+
+	private int evaluarYmostrarInteroperabilidad() {
+		int cantSistemas = Integer.valueOf(txtInteroperabilidad.getText());
+		int puntaje = cantSistemas == 0 ? 0 : cantSistemas == 1 ? 1 : 2;
 		
+		lblEvInteroperabilidad.setText("Puntaje: " + puntaje);
+		
+		return puntaje;
+	}
+
+	private int evaluarYmostrarSegAcceso() {
+		int puntaje;
+		
+		if(!checkBox6.isSelected()) {
+			puntaje = 0;
+		} else if(!checkBox7.isSelected()) {
+			puntaje = 1;
+		} else {
+			puntaje = 2;
+		}
+		
+		lblEvSegAcceso.setText("Puntaje: " + puntaje);
+		
+		return puntaje;
+	}
+
+	private int evaluarYmostrarExactResultados() {
+		int puntaje = 0;
+		
+		if(checkBox1.isSelected() && checkBox2.isSelected() && checkBox3.isSelected() && checkBox4.isSelected() && checkBox5.isSelected()) {
+			puntaje = 2;
+		} else if(checkBox1.isSelected() && checkBox2.isSelected()) {
+			puntaje = 1;
+		} else {
+			puntaje = 0;
+		}
+		
+		lblEvExacResultados.setText("Puntaje: " + puntaje);;
+		
+		return puntaje;
 	}
 	
-	private void evaluar() {
-		
-		
+	private void clearFrame() {
+		txtInteroperabilidad.setText(EMPTY_STRING);
+		checkBox1.setSelected(false);
+		checkBox2.setSelected(false);
+		checkBox3.setSelected(false);
+		checkBox4.setSelected(false);
+		checkBox5.setSelected(false);
+		checkBox6.setSelected(false);
+		checkBox7.setSelected(false);
+		lblEvExacResultados.setText(EMPTY_STRING);
+		lblEvFuncionalidad.setText(EMPTY_STRING);
+		lblEvInteroperabilidad.setText(EMPTY_STRING);
+		lblEvSegAcceso.setText(EMPTY_STRING);
 	}
 }
