@@ -62,7 +62,7 @@ public class VentanaPrincipal extends JFrame {
 		setLocationRelativeTo(null);
 	}
 	
-	public void comenzar() {
+	private void comenzar() {
 		dispose();
 		new Funcionabilidad(this).setVisible(true);
 	}
