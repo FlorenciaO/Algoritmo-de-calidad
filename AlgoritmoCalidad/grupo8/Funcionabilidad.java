@@ -157,6 +157,7 @@ public class Funcionabilidad extends JFrame{
 		getContentPane().add(lblEvSegAcceso);
 		
 		lblEvExacResultados = new JLabel("");
+		lblEvExacResultados.setForeground(Color.RED);
 		lblEvExacResultados.setBounds(48, 430, 236, 16);
 		getContentPane().add(lblEvExacResultados);
 		
