@@ -191,7 +191,7 @@ public class Eficiencia extends JFrame {
 				int rUtilizacionRecursos = evaluarYmostrarUtilizacionRecursos();
 				int rCompTiempo = evaluarYmostrarCompTiempo();
 
-				float promedio = (float) (rCompTiempo + rUtilizacionRecursos) / (float) 3;
+				float promedio = (float) (rCompTiempo + rUtilizacionRecursos) / (float) 2;
 
 				if (promedio == 0) {
 					Evaluacion.getInstance().rEficiencia = Resultado.Mala;
