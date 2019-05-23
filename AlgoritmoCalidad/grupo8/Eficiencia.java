@@ -112,18 +112,22 @@ public class Eficiencia extends JFrame {
 		getContentPane().add(txtCompTiempo);
 		
 		lblEvUsoCPU = new JLabel("");
+		lblEvUsoCPU.setForeground(Color.RED);
 		lblEvUsoCPU.setBounds(172, 125, 281, 16);
 		getContentPane().add(lblEvUsoCPU);
 		
 		lblEvUsoMemPrinc = new JLabel("");
+		lblEvUsoMemPrinc.setForeground(Color.RED);
 		lblEvUsoMemPrinc.setBounds(172, 244, 281, 16);
 		getContentPane().add(lblEvUsoMemPrinc);
 		
 		lblEvUtilizacionRecursos = new JLabel("");
+		lblEvUtilizacionRecursos.setForeground(Color.RED);
 		lblEvUtilizacionRecursos.setBounds(20, 277, 404, 16);
 		getContentPane().add(lblEvUtilizacionRecursos);
 		
 		lblEvCompTiempo = new JLabel("");
+		lblEvCompTiempo.setForeground(Color.RED);
 		lblEvCompTiempo.setBounds(20, 414, 428, 16);
 		getContentPane().add(lblEvCompTiempo);
 		
