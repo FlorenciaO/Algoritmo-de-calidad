@@ -24,9 +24,6 @@ public class Eficiencia extends JFrame {
 	private JTextField txtUsoCPU;
 	private JTextField txtUsoMemPrinc;
 	private JTextField txtCompTiempo;
-	
-	private JLabel lblEvUsoCPU;
-	private JLabel lblEvUsoMemPrinc;
 	private JLabel lblEvUtilizacionRecursos;
 	private JLabel lblEvCompTiempo;
 	private JLabel lblEvEficiencia;
@@ -111,16 +108,6 @@ public class Eficiencia extends JFrame {
 		txtCompTiempo.setBounds(30, 376, 130, 26);
 		getContentPane().add(txtCompTiempo);
 		
-		lblEvUsoCPU = new JLabel("");
-		lblEvUsoCPU.setForeground(Color.RED);
-		lblEvUsoCPU.setBounds(172, 125, 281, 16);
-		getContentPane().add(lblEvUsoCPU);
-		
-		lblEvUsoMemPrinc = new JLabel("");
-		lblEvUsoMemPrinc.setForeground(Color.RED);
-		lblEvUsoMemPrinc.setBounds(172, 244, 281, 16);
-		getContentPane().add(lblEvUsoMemPrinc);
-		
 		lblEvUtilizacionRecursos = new JLabel("");
 		lblEvUtilizacionRecursos.setForeground(Color.RED);
 		lblEvUtilizacionRecursos.setBounds(20, 277, 404, 16);
@@ -178,7 +165,7 @@ public class Eficiencia extends JFrame {
 	private void siguiente() {
 		clearFrame();
 		dispose();
-		//new Fiabilidad(this).setVisible(true);
+		new Fiabilidad(this).setVisible(true);
 	}
 
 	private void evaluar() {
@@ -236,7 +223,6 @@ public class Eficiencia extends JFrame {
 		} else if(porcentaje >= 11 && porcentaje < 41) {
 			puntaje = 1;
 		}
-		lblEvUsoCPU.setText("Puntaje: " + puntaje);
 		return puntaje;
 	}
 
@@ -248,7 +234,6 @@ public class Eficiencia extends JFrame {
 		} else if(porcentaje >= 16 && porcentaje < 51) {
 			puntaje = 1;
 		}
-		lblEvUsoMemPrinc.setText("Puntaje: " + puntaje);
 		return puntaje;
 	}
 
@@ -258,8 +243,6 @@ public class Eficiencia extends JFrame {
 		txtUsoMemPrinc.setText(EMPTY_STRING);
 		lblEvCompTiempo.setText(EMPTY_STRING);
 		lblEvEficiencia.setText(EMPTY_STRING);
-		lblEvUsoCPU.setText(EMPTY_STRING);
-		lblEvUsoMemPrinc.setText(EMPTY_STRING);
 		lblEvUtilizacionRecursos.setText(EMPTY_STRING);
 	}
 }
