@@ -9,6 +9,9 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Mantenibilidad extends JFrame{
 
@@ -16,12 +19,18 @@ public class Mantenibilidad extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 2830193224946007407L;
-	
+	private static final String EMPTY_STRING = "";
 	private JLabel lblEvMantenibilidad;
+	private JLabel lblEvEstabilidad;
+	private JLabel lblEvCapCodAnalizado;
+	private JLabel lblEvCapCodCambiado ;
 	private JButton btnSiguiente;
+	private JTextField txtAnalizado;
+	private JTextField txtCambiado;
+	private JTextField txtEstabilidad;
 	
 	public Mantenibilidad(JFrame padre) {
-		setTitle("Característica: Fiabilidad");
+		setTitle("Característica: Mantenibilidad");
 		setSize(502, 487);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(padre);
@@ -67,36 +76,98 @@ public class Mantenibilidad extends JFrame{
 		btnSiguiente.setBounds(379, 431, 117, 29);
 		getContentPane().add(btnSiguiente);
 		
-		JLabel lblEvCapCodAnalizado = new JLabel("");
+		 lblEvCapCodAnalizado = new JLabel("");
 		lblEvCapCodAnalizado.setForeground(Color.RED);
-		lblEvCapCodAnalizado.setBounds(10, 105, 404, 16);
+		lblEvCapCodAnalizado.setBounds(10, 118, 404, 16);
 		getContentPane().add(lblEvCapCodAnalizado);
 		
-		JLabel lblEvCapCodCambiado = new JLabel("");
+		 lblEvCapCodCambiado = new JLabel("");
 		lblEvCapCodCambiado.setForeground(Color.RED);
 		lblEvCapCodCambiado.setBounds(10, 257, 404, 16);
 		getContentPane().add(lblEvCapCodCambiado);
 		
-		JLabel lblEvEstabilidad = new JLabel("");
+		 lblEvEstabilidad = new JLabel("");
 		lblEvEstabilidad.setForeground(Color.RED);
-		lblEvEstabilidad.setBounds(10, 403, 404, 16);
+		lblEvEstabilidad.setBounds(10, 391, 404, 16);
 		getContentPane().add(lblEvEstabilidad);
+		
+		JLabel lbl1 = new JLabel("Indique porcentaje de código comentado");
+		lbl1.setBounds(20, 48, 425, 16);
+		getContentPane().add(lbl1);
+		
+		JLabel lbl2 = new JLabel("Indique la complejidad ciclomática");
+		lbl2.setBounds(20, 184, 425, 16);
+		getContentPane().add(lbl2);
+		
+		JLabel lbl3 = new JLabel("Indique el promedio de errores por prueba");
+		lbl3.setBounds(20, 325, 425, 16);
+		getContentPane().add(lbl3);
+		
+		txtAnalizado = new JTextField();
+		txtAnalizado.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				validarIngreso(e, txtAnalizado);
+			}
+		});
+		txtAnalizado.setBounds(43, 76, 130, 26);
+		getContentPane().add(txtAnalizado);
+		txtAnalizado.setColumns(10);
+		
+		txtCambiado = new JTextField();
+		txtCambiado.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				validarIngreso(e, txtCambiado);
+			}
+		});
+		txtCambiado.setColumns(10);
+		txtCambiado.setBounds(43, 219, 130, 26);
+		getContentPane().add(txtCambiado);
+		
+		txtEstabilidad = new JTextField();
+		txtEstabilidad.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				validarIngreso(e, txtEstabilidad);
+			}
+		});
+		txtEstabilidad.setColumns(10);
+		txtEstabilidad.setBounds(43, 353, 130, 26);
+		getContentPane().add(txtEstabilidad);
+		
+		JLabel lbl4 = new JLabel("%");
+		lbl4.setBounds(174, 81, 61, 16);
+		getContentPane().add(lbl4);
+	}
+	
+	private void validarIngreso(KeyEvent e, JTextField txt) {
+		int key = e.getKeyCode();
+		
+		if(!((key>= 48 && key<=57) || key == KeyEvent.VK_BACK_SPACE)) {
+			JOptionPane.showMessageDialog(this, "Debe ingresar un número", "Ingreso inválido", JOptionPane.WARNING_MESSAGE);
+			txt.setText(EMPTY_STRING);
+		}	
 	}
 	
 	private void siguiente() {
 		dispose();
-		//new Usabilidad(this).setVisible(true);
+		clearFrame();
+		new Usabilidad(this).setVisible(true);
 	}
 
 	private void evaluar() {
-		if (JOptionPane.showConfirmDialog(this, "¿Está seguro de las respuestas?", "Confirmación",
+		if (txtAnalizado.getText().equals(EMPTY_STRING) || txtCambiado.getText().equals(EMPTY_STRING) || txtEstabilidad.getText().equals(EMPTY_STRING)) {
+			JOptionPane.showMessageDialog(this, "Debe responder todas las preguntas.", "Campos incompletos", JOptionPane.ERROR_MESSAGE);
+		} else {
+			if (JOptionPane.showConfirmDialog(this, "¿Está seguro de las respuestas?", "Confirmación",
 					JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 
 				int rCapCodAnalizado = evaluarYmostrarCapCodAnalizado();
 				int rCapCodCambiado = evaluarYmostrarCapCodCambiado();
 				int rEstabilidad = evaluarYmostrarEstabilidad();
 
-				float promedio = (float) (rCapCodAnalizado + rCapCodCambiado + rEstabilidad) / (float) 2;
+				float promedio = (float) (rCapCodAnalizado + rCapCodCambiado + rEstabilidad) / (float) 3;
 
 				if (promedio == 0) {
 					Evaluacion.getInstance().rMantenibilidad = Resultado.Mala;
@@ -110,19 +181,49 @@ public class Mantenibilidad extends JFrame{
 				
 				btnSiguiente.setEnabled(true);
 			}
+		}
 		
 	}
 
 	private int evaluarYmostrarEstabilidad() {
-		return 0;
+		int porcentaje = Integer.valueOf(txtEstabilidad.getText());
+		int puntaje = 2;
+		if( porcentaje >= 5) {
+			puntaje = 0;
+		} else if(porcentaje >= 2 && porcentaje <= 4) {
+			puntaje = 1;
+		}
+		lblEvEstabilidad.setText("Puntaje: " + puntaje);
+		return puntaje;
 	}
 
 	private int evaluarYmostrarCapCodCambiado() {
-		return 0;
+		int porcentaje = Integer.valueOf(txtCambiado.getText());
+		int puntaje = 2;
+		if( porcentaje >= 21) {
+			puntaje = 0;
+		} else if(porcentaje < 21 && porcentaje > 10) {
+			puntaje = 1;
+		}
+		lblEvCapCodCambiado.setText("Puntaje: " + puntaje);
+		return puntaje;
 	}
 
 	private int evaluarYmostrarCapCodAnalizado() {
-		return 0;
+		int porcentaje = Integer.valueOf(txtAnalizado.getText());
+		int puntaje = 2;
+		if( porcentaje <= 14) {
+			puntaje = 0;
+		} else if(porcentaje > 14 && porcentaje < 30) {
+			puntaje = 1;
+		}
+		lblEvCapCodAnalizado.setText("Puntaje: " + puntaje);
+		return puntaje;
 	}
-
+	
+	private void clearFrame() {
+		txtAnalizado.setText(EMPTY_STRING);
+		txtCambiado.setText(EMPTY_STRING);
+		txtEstabilidad.setText(EMPTY_STRING);
+	}
 }
